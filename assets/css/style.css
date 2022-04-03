@@ -1,0 +1,9 @@
+#background {
+    background: url('../images/hangman-x-background.jpg') no-repeat center center fixed; 
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -10;
+}
