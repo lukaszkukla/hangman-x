@@ -1,5 +1,6 @@
 import gspread
 from classes.colors import Colors
+from classes.game import how_to_play
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -17,7 +18,17 @@ words = SHEET.worksheet('words')
 
 data = words.get_all_values()
 
-print(
+def start_game():
+    print('starting the game...')
+
+def hall_of_fame():
+    print('hall of fame')
+
+def welcome_screen():
+    """
+    Displays game title, and choice of menu options
+    """
+    print(
     """
     ██╗  ██╗ █████╗ ███╗   ██╗ ██████╗ ███╗   ███╗ █████╗ ███╗   ██╗     ██╗  ██╗
     ██║  ██║██╔══██╗████╗  ██║██╔════╝ ████╗ ████║██╔══██╗████╗  ██║     ╚██╗██╔╝
@@ -26,29 +37,15 @@ print(
     ██║  ██║██║  ██║██║ ╚████║╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║     ██╔╝ ██╗
     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝     ╚═╝  ╚═╝
     """
-)
-
-def start_game():
-    print('starting the game...')
-
-def how_to_play():
-    print('game rules')
-
-def hall_of_fame():
-    print('hall of fame')
-
-def welcome_screen():
-    """
-    Displays gamve title, and menu options
-    """
+    )
     menu_options = True
     while menu_options:
         print('Press ' + Colors.GREEN + '1' + Colors.WHITE +
-            ' to play game\n'
+            ' to start game\n'
             'Press ' + Colors.YELLOW + '2' + Colors.WHITE +
-            ' to set difficulty\n'
-            'Press ' + Colors.WHITE + '3' + Colors.WHITE +
             ' to view rules\n'
+            'Press ' + Colors.WHITE + '3' + Colors.WHITE +
+            ' to view hall of fame\n'
             'Press ' + Colors.UNDERLINE + '4' + Colors.WHITE +
             ' to quit\n')  
         option = input().upper()
