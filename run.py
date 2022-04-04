@@ -37,30 +37,39 @@ def how_to_play():
 def hall_of_fame():
     print('hall of fame')
 
-menu_options = True
-while menu_options:
-    print('Press ' + Colors.GREEN + '1' + Colors.WHITE +
-           ' to play game\n'
-          'Press ' + Colors.YELLOW + '2' + Colors.WHITE +
-           ' to set difficulty\n'
-          'Press ' + Colors.WHITE + '3' + Colors.WHITE +
-          ' to view rules\n'
-          'Press ' + Colors.UNDERLINE + '4' + Colors.WHITE +
-          ' to quit\n')  
-    option = input().upper()
-    if option == '1':
-        options_menu = False
-        start_game()
-    elif option == '2':
-        options_menu = False
-        how_to_play()
-    elif option == '3':
-        options_menu = False
-        hall_of_fame()
-    elif option == '4':
-        exit()
-    else:
-        print('Not valid menu option, please try again.\n')
+def welcome_screen():
+    """
+    Displays gamve title, and menu options
+    """
+    menu_options = True
+    while menu_options:
+        print('Press ' + Colors.GREEN + '1' + Colors.WHITE +
+            ' to play game\n'
+            'Press ' + Colors.YELLOW + '2' + Colors.WHITE +
+            ' to set difficulty\n'
+            'Press ' + Colors.WHITE + '3' + Colors.WHITE +
+            ' to view rules\n'
+            'Press ' + Colors.UNDERLINE + '4' + Colors.WHITE +
+            ' to quit\n')  
+        option = input().upper()
+        if option == '1':
+            options_menu = False
+            start_game()
+        elif option == '2':
+            options_menu = False
+            how_to_play()
+        elif option == '3':
+            options_menu = False
+            hall_of_fame()
+        elif option == '4':
+            exit()
+        else:
+            print('Not valid menu option, please try again.\n')
 
+def main():
+    """
+    Run all program functions
+    """
+    welcome_screen()
 
-
+main()
