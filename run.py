@@ -1,4 +1,5 @@
 import gspread
+from classes.colors import Colors
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -15,17 +16,6 @@ SHEET = GSPREAD_CLIENT.open('hangman-x')
 words = SHEET.worksheet('words')
 
 data = words.get_all_values()
-
-class bcolors:
-    RED = '\033[91m'
-    VIOLET = '\033[95m'
-    BLUE = '\033[94m'
-    CYAN = '\033[96m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'    
-    WHITE = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 print(
     """
@@ -49,13 +39,13 @@ def hall_of_fame():
 
 menu_options = True
 while menu_options:
-    print(' Press ' + bcolors.GREEN + '1' + bcolors.WHITE +
+    print('Press ' + Colors.GREEN + '1' + Colors.WHITE +
            ' to play game\n'
-          ' Press ' + bcolors.YELLOW + '2' + bcolors.WHITE +
+          'Press ' + Colors.YELLOW + '2' + Colors.WHITE +
            ' to set difficulty\n'
-          ' Press ' + bcolors.WHITE + '3' + bcolors.WHITE +
+          'Press ' + Colors.WHITE + '3' + Colors.WHITE +
           ' to view rules\n'
-          ' Press ' + bcolors.UNDERLINE + '4' + bcolors.WHITE +
+          'Press ' + Colors.UNDERLINE + '4' + Colors.WHITE +
           ' to quit\n')  
     option = input().upper()
     if option == '1':
