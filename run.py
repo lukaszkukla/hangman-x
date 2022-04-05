@@ -29,6 +29,9 @@ def clear_terminal():
         cmd = 'cls'
     os.system(cmd)
 
+def random_word():    
+    print('prints random word with category')
+
 def start_game():
     print('starting the game...')
 
