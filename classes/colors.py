@@ -1,4 +1,7 @@
 class Colors:
+    """
+    This class defines basic color pallette used in the game.
+    """
     RED = '\033[91m'
     VIOLET = '\033[95m'
     BLUE = '\033[94m'

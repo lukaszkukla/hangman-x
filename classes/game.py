@@ -15,11 +15,11 @@ def how_to_play():
     'to the next secret word or resign. If player choose to resign and it\n'
     'accumulated enough points it will be able to add its name to the hall of fame.\n'
     'Only best players will have the privilege to add their name to the hall of fame.\n'
-    'On the other hand each missed letter cost the player' + Colors.BOLD + ' 1 life.\n' 
+    'On the other hand each' + Colors.RED + ' missed letter cost the player 1 life.\n' 
     + Colors.WHITE + 'Each unseccessful guess adds a new body part to the gallow.\n'
     'After 6 unsuccessfull guesses player will be hanged and game will be over.\n\n'
-    + Colors.BOLD + 'You have 6 lives,' + Colors.WHITE + ' can you beat the game and add your name to the' 
-    + Colors.BOLD + ' HALL OF FAME?\n\n' + Colors.WHITE +
+    + Colors.GREEN + 'You have 6 lives,' + Colors.WHITE + ' can you beat the game and add your name to the' 
+    + Colors.YELLOW + ' HALL OF FAME?\n\n' + Colors.WHITE +
     
     'Press any key to go back to main menu...'
     )
