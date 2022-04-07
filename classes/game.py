@@ -1,6 +1,36 @@
 from classes.colors import Colors
+import os
+
+def title():
+    """
+    Displays game title at the top of the screen
+    """
+    print(
+    """
+    ██╗  ██╗ █████╗ ███╗   ██╗ ██████╗ ███╗   ███╗ █████╗ ███╗   ██╗     ██╗  ██╗
+    ██║  ██║██╔══██╗████╗  ██║██╔════╝ ████╗ ████║██╔══██╗████╗  ██║     ╚██╗██╔╝
+    ███████║███████║██╔██╗ ██║██║  ███╗██╔████╔██║███████║██╔██╗ ██║█████╗╚███╔╝ 
+    ██╔══██║██╔══██║██║╚██╗██║██║   ██║██║╚██╔╝██║██╔══██║██║╚██╗██║╚════╝██╔██╗ 
+    ██║  ██║██║  ██║██║ ╚████║╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║     ██╔╝ ██╗
+    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝     ╚═╝  ╚═╝
+    """
+    )
+
+def clear_terminal():
+    """
+    Clears terminal for various OS'es
+    """
+    cmd = 'clear'
+    if os.name in ('dos', 'nt'):
+        cmd = 'cls'
+    os.system(cmd)
+
+def pause():
+    input("Press Enter to continue...")
+
 
 def how_to_play():
+    title()
     print(Colors.BOLD + 'A brief history...\n' + Colors.WHITE +
     'Hangman is a digital version of the popular\n'
     'pen and paper game of unknown origin.\n\n'
@@ -19,7 +49,7 @@ def how_to_play():
     + Colors.WHITE + 'Each unseccessful guess adds a new body part to the gallow.\n'
     'After 6 unsuccessfull guesses player will be hanged and game will be over.\n\n'
     + Colors.GREEN + 'You have 6 lives,' + Colors.WHITE + ' can you beat the game and add your name to the' 
-    + Colors.YELLOW + ' HALL OF FAME?\n\n' + Colors.WHITE +
-    
-    'Press any key to go back to main menu...'
+    + Colors.YELLOW + ' HALL OF FAME?\n\n' + Colors.WHITE
     )
+    pause()
+    clear_terminal()
