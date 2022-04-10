@@ -20,5 +20,4 @@ def get_word(url):
 
 def call_get_word():
     word = get_word(APIURL)[0]
-    print(word)
     return word

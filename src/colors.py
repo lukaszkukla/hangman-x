@@ -8,6 +8,8 @@ class Colors:
     CYAN = '\033[96m'
     GREEN = '\033[92m'
     YELLOW = '\033[93m'    
+    ORANGE = '\001[32;1m'
     WHITE = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+    
