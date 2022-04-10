@@ -11,7 +11,7 @@ It is a third project on my journey with [code institute](https://codeinstitute.
 
 [Hangman game](https://en.wikipedia.org/wiki/Hangman_(game)#:~:text=Though%20the%20origins%20of%20the,to%20fill%20in%20the%20blanks.) requires user to guess the secret word by guessing the individual letters. Users have 6 attempts per word to beat the game before they will be 'hanged'.
 
-My version of the game shows word category and it allows user to choose between 3 levels of difficutly. Game continues until user stops, loose or guesses all questions from database.
+My version of the game allows user to choose between 3 levels of difficutly. Game continues until user stops, loose all lives or resign.
 
 ![responisive design](docs/screenshots/responsive-design.jpg "responive design for variouse device sizes")
 
@@ -58,7 +58,6 @@ My version of the game shows word category and it allows user to choose between 
 * as a user, I want to know how the game works (help)
 * as a user, I want to see list of 10 best players
 * as a user, I want to be able to choose difficulty level
-* as a user, I want to know word category
 * as a user, I want to see my score
 * as a user, I want to stop game at any time
 * as a user, I want to track number of correct guessed words
@@ -150,45 +149,45 @@ the rules are broken into 2 screens with 'press any key to continue...' in betwe
 
 ### gameplay
 - user can choose the difficulty level upon game startup
-- guess words are picked from database based on the difficulty level in the previous step and their order is shuffled
+- guess words are picked from database based on the difficulty level
 - user must enter letters to guess the first and subsequent words in the game
 - user advances to the next word when all letters of current has been revealed
 - game ends when:
     - user runs out of tries
     - user guess all available words from the database
-    - user types 'done' at any stage during the game
-- keyword 'done' completes the game in its current state and adds user to the hall of fame if enough points accumulated
+    - user types *'resign'* at any stage during the game
+- keyword *'resign'* completes the game in its current state and adds user to the hall of fame if enough points accumulated
 - only the user who accumulates enough points will get an honour to be added to the hall of fame and will be prompted to add her/his name at the end of the game - this is design from old arcade games of 80's and 90's ;-)
 
 #### tries
-each missed letter will decrease user's life by 1 point and add another body part to the gallow:
+each missed letter will decrease user's life by 1 point and add another body part to the gallows:
 
 * initial state
-![HANGMAN-X gallow initial state](docs/wireframes/HANGMAN-X-gallow-state-001.jpg "HANGMAN-X gallow initial state")
+![HANGMAN-X gallows initial state](docs/wireframes/HANGMAN-X-gallows-state-001.jpg "HANGMAN-X gallows initial state")
 
 * head
 
-![HANGMAN-X gallow 5 tries](docs/wireframes/HANGMAN-X-gallow-state-002.jpg "HANGMAN-X gallow with head")
+![HANGMAN-X gallows 5 tries](docs/wireframes/HANGMAN-X-gallows-state-002.jpg "HANGMAN-X gallows with head")
 
 * head and torso
 
-![HANGMAN-X gallow 4 tries](docs/wireframes/HANGMAN-X-gallow-state-003.jpg "HANGMAN-X gallow with head and torso")
+![HANGMAN-X gallows 4 tries](docs/wireframes/HANGMAN-X-gallows-state-003.jpg "HANGMAN-X gallows with head and torso")
 
 * head, torso, and one arm
 
-![HANGMAN-X gallow 3 tries](docs/wireframes/HANGMAN-X-gallow-state-004.jpg "HANGMAN-X gallow with head, torso, and one arm")
+![HANGMAN-X gallows 3 tries](docs/wireframes/HANGMAN-X-gallows-state-004.jpg "HANGMAN-X gallows with head, torso, and one arm")
 
 * head, torso, and both arms
 
-![HANGMAN-X gallow 2 tries](docs/wireframes/HANGMAN-X-gallow-state-005.jpg "HANGMAN-X gallow with head, torso, and both arms")
+![HANGMAN-X gallows 2 tries](docs/wireframes/HANGMAN-X-gallows-state-005.jpg "HANGMAN-X gallows with head, torso, and both arms")
 
 * head, torso, both arms, and one leg
 
-![HANGMAN-X gallow 1 try](docs/wireframes/HANGMAN-X-gallow-state-006.jpg "HANGMAN-X gallow with head, torso, both arms, and one leg")
+![HANGMAN-X gallows 1 try](docs/wireframes/HANGMAN-X-gallows-state-006.jpg "HANGMAN-X gallows with head, torso, both arms, and one leg")
 
 * final state: head, torso, both arms, and both legs
 
-![HANGMAN-X gallow final state](docs/wireframes/HANGMAN-X-gallow-state-007.jpg "HANGMAN-X final state gallow with head, torso, both arms, and both legs")
+![HANGMAN-X gallows final state](docs/wireframes/HANGMAN-X-gallows-state-007.jpg "HANGMAN-X final state gallows with head, torso, both arms, and both legs")
 
 #### error handling
 - user can only enter letters, numbers and special characters are not allowed and will prompt the user:
@@ -202,9 +201,7 @@ each missed letter will decrease user's life by 1 point and add another body par
 &nbsp;
 
 ## future developments
-
-* extend categories and words in the database 
-* allow user to choose category
+* allow user to sacrifice some points to reveal 1 random letter per word
 * make it more visually appealing with Colorama library
 
 \
