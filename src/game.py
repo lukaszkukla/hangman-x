@@ -1,5 +1,4 @@
 from src.api import call_get_word
-from src.utils import clear_terminal, print_title
 from src.colors import Colors
 
 def display_word():

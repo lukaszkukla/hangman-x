@@ -1,6 +1,9 @@
 import requests
 
-APIURL = requests.get('https://random-word-api.herokuapp.com/word?number=1&swear=0', timeout=3)
+APIURL = requests.get('https://random-word-api.herokuapp.com/word', timeout=3)
+
+# original link - stopped working
+# https://random-word-api.herokuapp.com/word?number=1&swear=0
 
 # exception handling code borrowed from
 # https://www.nylas.com/blog/use-python-requests-module-rest-apis/
