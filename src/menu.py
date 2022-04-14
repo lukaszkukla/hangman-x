@@ -1,13 +1,12 @@
 import os
 from src.colors import Colors
-from src.utils import clear_terminal, pause, hall_of_fame_scores
+from src.utils import clear_terminal, pause
 from src.api import call_get_word
-from src.game import display_word, hall_of_fame
-from src.gallows import game_title, rules_title, player_wins_title, display_hangman, hall_of_fame_title
-
+from src.gallows import  display_hangman
+from src.headers import game_header, rules_header, player_wins_header, hall_of_fame_header, game_over_header
 import gspread
 from google.oauth2.service_account import Credentials
-
+import operator
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -28,7 +27,7 @@ game_results = {}
 score = 0
 print(word)
 
-
+# This code snippet is from stackoverflow
 def update_highscores():
     keys = [str(eachvalue) for eachvalue in scores[0].keys()]
     values = [str(eachvalue) for eachvalue in scores[0].values()]
@@ -36,10 +35,31 @@ def update_highscores():
                       {'range': 'A2:Z2', 'values': [values]}]
     high_scores.batch_update(update_results)
 
-# use f string and many print statements to make it easer to read
+def player_name():
+    clear_terminal()
+    global player
+    while True:
+        player = input('please enter a your name: ').upper()
+        if player.isalpha():
+            game_results[player] = 0
+            start_game(word)
+        else:
+            print("{:^74}".format("please use letters only"))
+
+def hall_of_fame_scores():
+    clear_terminal()
+    game_header()
+    hall_of_fame_header()
+    ordered_scores = (dict(sorted(scores[0].items(),
+                      key=operator.itemgetter(1), reverse=True)[:10]))
+    for key, val in ordered_scores.items():
+        print(f'{Colors.GREEN}{key}{Colors.WHITE} : {Colors.YELLOW}{val}{Colors.WHITE}')
+    pause()
+    welcome_screen()
+
 def how_to_play():
-    game_title()
-    rules_title()
+    game_header()
+    rules_header()
     print(f'{Colors.BOLD}A brief history...{Colors.WHITE}')
     print(f'''Hangman is a digital version of the popular
 pen and paper game of unknown origin.\n''')
@@ -63,27 +83,26 @@ After 6 unsuccessfull guesses player will be hanged and game will be over.\n''')
     clear_terminal()
     welcome_screen()
 
-
 def welcome_screen():
     """
-    Displays game title, and choice of menu options
+    Displays game header, and choice of menu options
     """
     clear_terminal()
-    game_title()
+    game_header()
     menu_options = True
     while menu_options:
-        print('Press ' + Colors.BLUE + '1' + Colors.WHITE +
+        print('press ' + Colors.BLUE + '1' + Colors.WHITE +
             ' to start game\n'
-            'Press ' + Colors.BLUE + '2' + Colors.WHITE +
+            'press ' + Colors.BLUE + '2' + Colors.WHITE +
             ' to view rules\n'
-            'Press ' + Colors.BLUE + '3' + Colors.WHITE +
+            'press ' + Colors.BLUE + '3' + Colors.WHITE +
             ' to view hall of fame\n'
-            'Press ' + Colors.BLUE + '4' + Colors.WHITE +
+            'press ' + Colors.BLUE + '4' + Colors.WHITE +
             ' to quit\n')  
         option = input().upper()
         if option == '1':
             menu_options = False
-            start_game(word)
+            player_name()
         elif option == '2':
             menu_options = False
             clear_terminal()
@@ -91,12 +110,12 @@ def welcome_screen():
         elif option == '3':
             menu_options = False
             clear_terminal()
-            hall_of_fame_title()
+            hall_of_fame_header()
             hall_of_fame_scores()
         elif option == '4':
             exit()
         else:
-            print('Not valid menu option, please try again.\n')
+            print('not a valid menu option, please try again.\n')
 
 def start_game(word):
     '''
@@ -105,7 +124,6 @@ def start_game(word):
     Calls restart game function if player runs out of tries.
     '''   
     hidden_word = '_' * len(word)
-    # hidden_word = display_word().upper()
     global score
     game_over = False
     guessed = False
@@ -113,14 +131,14 @@ def start_game(word):
     tries = 6 
     clear_terminal()
     print(word)
-    game_title()
-    print(f'Number of tries left: {Colors.BLUE}{tries}{Colors.WHITE}\n')
-    print(f'your current score is {Colors.GREEN}{score}{Colors.WHITE}\n')
-    print(f'The hidden word is: {Colors.YELLOW}{hidden_word}{Colors.WHITE}\n')
+    game_header()
+    print(f'number of tries left: {Colors.BLUE}{tries}{Colors.WHITE}\n')
+    print(f'your current score is {Colors.GREEN}{game_results[player]}{Colors.WHITE}\n')
+    print(f'the hidden word is: {Colors.YELLOW}{hidden_word}{Colors.WHITE}\n')
     print(f'{display_hangman(tries)}')
 
     while not guessed and tries > 0:
-        guess_letter = input('Guess the letter:\n').upper()
+        guess_letter = input('guess the letter:\n').upper()
         try:
             if(len(guess_letter) > 1):
                 raise ValueError(
@@ -137,7 +155,7 @@ def start_game(word):
                     )
                 elif(guess_letter not in word):
                     clear_terminal()
-                    game_title()
+                    game_header()
                     print(f'{Colors.RED}{guess_letter}{Colors.WHITE} is not in the word', end='')
                     print(f' you lost {Colors.RED}1 life{Colors.WHITE}\n')
                     
@@ -145,18 +163,17 @@ def start_game(word):
                     tries -= 1
                     print(f'Number of tries left: {Colors.BLUE}{tries}{Colors.WHITE}\n')
 
-                    score -=1
-                    print(f'your current score is {Colors.GREEN}{score}{Colors.WHITE}\n')
-
-                    # print(f'The hidden word is: {Colors.YELLOW}{hidden_word}{Colors.WHITE}\n')
+                    game_results[player] -=1
+                    print(f'your current score is {Colors.GREEN}{game_results[player]}{Colors.WHITE}\n')
 
                 else:
                     clear_terminal()
-                    game_title()
+                    game_header()
                     print(f'Number of tries left: {Colors.BLUE}{tries}{Colors.WHITE}\n')
 
-                    score =+ 1
-                    print(f'your current score is {Colors.GREEN}{score}{Colors.WHITE}\n')
+                    game_results[player] += 1
+                    print(game_results[player])
+                    print(f'your current score is {Colors.GREEN}{game_results[player]}{Colors.WHITE}\n')
                     
                     print(f'{Colors.GREEN}well done!{Colors.WHITE} {guess_letter} is in the word')
                     print(word)
@@ -165,7 +182,7 @@ def start_game(word):
                     letter_guess.append(guess_letter)
                     reveal_word = list(hidden_word)
                     
-                    # This code snippet is from stackoverflow.
+                    # This code snippet is from stackoverflow
                     indices = [i for i, letter in enumerate(word) if letter == guess_letter]
                     for index in indices:
                         reveal_word[index] = guess_letter
@@ -179,58 +196,59 @@ def start_game(word):
         print(display_hangman(tries))
 
         if(tries > 0):
-            score +=1
+            print(game_results[player])
             print(f'you have {Colors.BLUE}{tries}{Colors.WHITE} tries left')
-            # print(f'{Colors.BOLD}{letter_guess}{Colors.WHITE}')
-            print(f'The hidden word is: {Colors.YELLOW}{hidden_word}{Colors.WHITE}')
-            print(f'Letters guessed: {Colors.BOLD}{sorted(letter_guess)}{Colors.WHITE}')
+            print(f'the hidden word is: {Colors.YELLOW}{hidden_word}{Colors.WHITE}')
+            print(f'letters guessed: {Colors.BOLD}{str(sorted(letter_guess))}{Colors.WHITE}')
         # elif(tries == 0):
         #     clear_terminal()
         #     print(f'you have {tries} left')
-        #     print(f'you have been hanged!'.center(width))
+        #     print(f'you have been hanged!')
         #     restart()
     
     if guessed:
         clear_terminal()
-        player_wins_title()
-        print(f'Congrats!, you guessed the word: {word} correctly! You Win!')
+        player_wins_header()
+        print(f'congrats!, you guessed the word: {Colors.VIOLET}{word}{Colors.WHITE} correctly!')
         
         while True:            
             play_again_after_win = input('  ' * 10 +
-                                         ' Play Again? ( Y / N ) : ').upper()
+                                         ' play again? ( y / n ) : ').upper()
             if(play_again_after_win == 'Y'):
-                current_score = score + 10
+                game_results[player] += 10
                 word = call_get_word().upper()
-                # game_results[player] += 1
                 start_game(word)
                 
             elif(play_again_after_win == 'N'):
-                score += 10
-                # game_results[player] += 1
-                welcome_screen()
-                # if(player not in scores[0].keys()):
-                #     scores[0][player] = scores[player]
-                #     update_highscores_sheet()
-                #     welcome_screen()
-                # elif(scores[player] > scores[0][player]):
-                #     scores[0][player] = scores[player]
-                #     update_highscores_sheet()
-                #     welcome_screen()
-                # else:
-                #     welcome_screen()
-    else:             
-        print(f'you have {tries} tries left')
-        print(f'you have been hanged!'.center(width))
-        print(f'the hidden word was: {word.upper()}')
+                game_results[player] += 10                
+                if(player not in scores[0].keys()):
+                    scores[0][player] = game_results[player]
+                    update_highscores()
+                    clear_terminal()
+                    hall_of_fame_header()
+                    print('congrats you are in the hall of fame')
+                    hall_of_fame_scores()
+                elif(game_results[player] > scores[0][player]):
+                    scores[0][player] = game_results[player]
+                    update_highscores()
+                    clear_terminal()
+                    hall_of_fame_header()
+                    hall_of_fame_scores()
+                else:
+                    welcome_screen()
+    else:
+        print(f'you have been hanged!')
+        game_over_header()
+        print(f'the hidden word was: {Colors.YELLOW}{word.upper()}{Colors.WHITE}')
 
         while True:
-            play_again_after_lose = input(f'Play Again? ( Y / N ) : '.center(width)).upper()
+            play_again_after_lose = input(f'play again? ( y / n ) : ').upper()
             if(play_again_after_lose == 'Y'):
                 start_game(call_get_word())
             elif(play_again_after_lose == 'N'):
                 welcome_screen()
             else:
-                print(f'Please choose option Y or N'.center(width))
+                print(f'please choose option y or n')
 
 def restart():
     """
@@ -238,7 +256,7 @@ def restart():
     """
     while True:
         user_input = input(
-            "Would you like to continue? [Y]ES/[N]O\n".center(width)).upper()
+            'would you like to continue? ( y / n ) : \n')
         if user_input == "Y":
             clear_terminal()
             call_get_word()
@@ -248,4 +266,4 @@ def restart():
             welcome_screen()
         else:
             clear_terminal()
-            print("Invalid choise, please chose again\n".center(width))  
+            print('invalid choise, please chose again\n')  
