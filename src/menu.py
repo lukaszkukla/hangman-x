@@ -103,7 +103,7 @@ def start_game(word):
     Starts the game.
     Sets initial tries, displays empty gallows and shows the word to be guessed.
     Calls restart game function if player runs out of tries.
-    '''    
+    '''   
     hidden_word = '_' * len(word)
     # hidden_word = display_word().upper()
     global score
@@ -145,7 +145,7 @@ def start_game(word):
                     tries -= 1
                     print(f'Number of tries left: {Colors.BLUE}{tries}{Colors.WHITE}\n')
 
-                    score -= 1
+                    score -=1
                     print(f'your current score is {Colors.GREEN}{score}{Colors.WHITE}\n')
 
                     # print(f'The hidden word is: {Colors.YELLOW}{hidden_word}{Colors.WHITE}\n')
@@ -191,7 +191,6 @@ def start_game(word):
         #     restart()
     
     if guessed:
-        global player
         clear_terminal()
         player_wins_title()
         print(f'Congrats!, you guessed the word: {word} correctly! You Win!')
@@ -199,25 +198,26 @@ def start_game(word):
         while True:            
             play_again_after_win = input('  ' * 10 +
                                          ' Play Again? ( Y / N ) : ').upper()
-            if play_again_after_win == 'Y':
-                score += 10
+            if(play_again_after_win == 'Y'):
+                current_score = score + 10
                 word = call_get_word().upper()
                 # game_results[player] += 1
                 start_game(word)
-            elif play_again_after_win == 'N':
+                
+            elif(play_again_after_win == 'N'):
                 score += 10
                 # game_results[player] += 1
                 welcome_screen()
-                if player not in scores[0].keys():
-                    scores[0][player] = game_results[player]
-                    update_highscores_sheet()
-                    welcome_screen()
-                elif game_results[player] > scores[0][player]:
-                    scores[0][player] = game_results[player]
-                    update_highscores_sheet()
-                    welcome_screen()
-                else:
-                    welcome_screen()
+                # if(player not in scores[0].keys()):
+                #     scores[0][player] = scores[player]
+                #     update_highscores_sheet()
+                #     welcome_screen()
+                # elif(scores[player] > scores[0][player]):
+                #     scores[0][player] = scores[player]
+                #     update_highscores_sheet()
+                #     welcome_screen()
+                # else:
+                #     welcome_screen()
     else:             
         print(f'you have {tries} tries left')
         print(f'you have been hanged!'.center(width))
@@ -225,9 +225,9 @@ def start_game(word):
 
         while True:
             play_again_after_lose = input(f'Play Again? ( Y / N ) : '.center(width)).upper()
-            if play_again_after_lose == 'Y':
+            if(play_again_after_lose == 'Y'):
                 start_game(call_get_word())
-            elif play_again_after_lose == 'N':
+            elif(play_again_after_lose == 'N'):
                 welcome_screen()
             else:
                 print(f'Please choose option Y or N'.center(width))
