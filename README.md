@@ -1,6 +1,6 @@
 # HANGMAN-X.com 
 
-[View the live site here](https://lukaszkukla)
+[View the live deployment here](https://hangman-x-2022.herokuapp.com/)
 
 [GitHub](https://github.com/lukaszkukla/hangman-x)
 
@@ -13,7 +13,9 @@ It is a third project on my journey with [Code Institute](https://codeinstitute.
 
 My version of the game calls for random word via API. Game continues until user stops, loose all lives or resign.
 
-For the purpose of testing its functionality user may enter word 'cheat' to get a hint of the hidden word. This functionality is only for [Code Institute](codeinstitute.com) the grading purposes.
+For the purpose of testing its functionality user may enter word **'cheat'** to get a hint of the hidden word. This functionality is only for the [Code Institute](codeinstitute.com) testing and grading purposes.
+
+![HANGMAN-X in browser screenshot](docs/screenshots/hangman-x-main-menu-screenshot.jpg "HANGMAN-X in browser screenshot")
 
 # Table of contents
 
