@@ -6,11 +6,13 @@ from src.utils import clear_terminal, pause
 from src.api import get_word
 from src.gallows import display_hangman
 from src.headers import (
+    disclaimer_header,
     game_header,
     rules_header,
     player_wins_header,
     hall_of_fame_header,
-    game_over_header)
+    game_over_header,
+    disclaimer_header)
 from google.oauth2.service_account import Credentials
 from src.lang import language
 
@@ -134,6 +136,8 @@ def game_menu():
         print(f'to view {Colors.YELLOW}Hall of Fame{Colors.WHITE}')
         print(f'Press {Colors.BLUE}4{Colors.WHITE} ', end='')
         print(f'to {Colors.RED}quit the game{Colors.WHITE}\n')
+        print(f'Press {Colors.BLUE}5{Colors.WHITE} ', end='')
+        print(f'for {Colors.UNDERLINE}disclaimer{Colors.WHITE}\n')
         option = input('Choose one of the main menu options: ').upper()
         if option == '1':
             menu_options = False
@@ -151,6 +155,17 @@ def game_menu():
             print('Thank you for playing. I hope you enjoyed it.\n')
             print('Shutting down...')
             exit()
+        elif option == '5':
+            clear_terminal()
+            game_header()
+            disclaimer_header()
+            print('Pleaes note that the game functionality depends on the extarnal link.')
+            print('In case there were any changes to it please contact me via ')
+            print('Code Institute so I can update the link ', end='')            
+            print('to ensure the game functions properly.\n')
+            print('Thank you for your understanding.')
+            pause()
+            game_menu()
         else:
             print(f'{option} is not a valid menu option, please try again.\n')
 
