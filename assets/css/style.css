@@ -7,7 +7,7 @@
 }
 
 #background {
-    background: url('../images/hangman-x-background.jpg') no-repeat center center fixed; 
+    background: url('https://am4pap001files.storage.live.com/y4m1PYr7c-JJxUXMUHwfAgBV939l3_OZtVg8Ah49hl-DqtHu8UxlQTZiumn8DTYX2SrqNAGKEvy2bIFvSUzYxCjaeL1ecaFedpVT6lPfncQS7UjXM2wp4RG5CI25twa-ppC1AfAUE-4tiwAi5x_S2aGIIJTJrG_umqejCKQT-WjKuCUgcT6iPHtqcsNUEKrScbW?width=1920&height=1080&cropmode=none') no-repeat center center fixed; 
     height: 100vh;
     left: 0;
     position: fixed;
