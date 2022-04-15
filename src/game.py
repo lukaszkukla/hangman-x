@@ -1,12 +1,18 @@
 import os
+import operator
+import gspread
 from src.colors import Colors
 from src.utils import clear_terminal, pause
 from src.api import get_word
-from src.gallows import  display_hangman
-from src.headers import game_header, rules_header, player_wins_header, hall_of_fame_header, game_over_header
-import gspread
+from src.gallows import display_hangman
+from src.headers import (
+    game_header,
+    rules_header,
+    player_wins_header,
+    hall_of_fame_header,
+    game_over_header)
 from google.oauth2.service_account import Credentials
-import operator
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -23,6 +29,7 @@ scores = high_scores.get_all_records()
 word = get_word().upper()
 player_score = {}
 
+
 def hall_of_fame_scores():
     scores = high_scores.get_all_records()
     clear_terminal()
@@ -31,9 +38,11 @@ def hall_of_fame_scores():
     ordered_scores = (dict(sorted(scores[0].items(),
                       key=operator.itemgetter(1), reverse=True)[:10]))
     for key, val in ordered_scores.items():
-        print(f'{Colors.GREEN}{key}{Colors.WHITE} : {Colors.YELLOW}{val}{Colors.WHITE}')
+        print(f'{Colors.GREEN}{key}{Colors.WHITE}:', end='')
+        print(f' {Colors.YELLOW}{val}{Colors.WHITE}')
     pause()
     game_menu()
+
 
 # This code snippet is from stackoverflow
 def update_highscores():
@@ -45,6 +54,7 @@ def update_highscores():
     update_results = [{'range': 'A1:ZZZ1', 'values': [keys]},
                       {'range': 'A2:ZZZ2', 'values': [values]}]
     high_scores.batch_update(update_results)
+
 
 def player_name():
     '''
@@ -59,6 +69,7 @@ def player_name():
             start_game(word)
         else:
             print("{:^74}".format("please use letters only"))
+
 
 def how_to_play():
     '''
@@ -78,18 +89,27 @@ In order to win the game player must type in the letter and press
 ENTER KEY to see if it is in the secret word. Upon successful guess
 of the secret word player has the option to continue the game and advance
 to the next secret word or stop the game.''')
-    print(f'''Player may choose to resign at any stage of the game by typing word {Colors.VIOLET}resign{Colors.WHITE}.
-If player accumulated enough points it will be able to add its name to the hall of fame.
-Only best players will have the privilege to add their name to the hall of fame.''')
-    print(f'''Every {Colors.GREEN}successful guess adds 1 point{Colors.WHITE} to the final score''')
-    print(f'''On the other hand each {Colors.RED}missed letter cost the player 1 life and 1 point. 
-{Colors.WHITE}Each unseccessful try adds a new body part to the gallows.
-After 6 unsuccessfull guesses player will be hanged and game will be over.\n''')
-    print(f'{Colors.GREEN}You have 6 lives,{Colors.WHITE} to beat the game', end='')
-    print(f' and add your name to the {Colors.YELLOW}HALL OF FAME!{Colors.WHITE}')
+    print(f'Player may choose to resign at any stage of the game ', end='')
+    print(f'by typing word {Colors.VIOLET}resign{Colors.WHITE}.')
+    print('If player accumulated enough points it will be able ', end='')
+    print('to add its name to the hall of fame.')
+    print('Only best players will have the privilege ', end='')
+    print('to add their name to the hall of fame.')
+    print(f'Every {Colors.GREEN}successful guess adds 1 point ', end='')
+    print(f'{Colors.WHITE}to the final score.')
+    print('On the other hand, every ', end='')
+    print(f'{Colors.RED}missed letter cost the player ', end='')
+    print(f'1 life and 1 point.{Colors.WHITE}')
+    print('Each unseccessful try adds a new body part to the gallows.')
+    print('After 6 unsuccessfull guesses player ', end='')
+    print('will be hanged and game will be over.\n')
+    print(f'{Colors.GREEN}You have 6 lives,{Colors.WHITE}', end='')
+    print('to beat the game and add your name to the ', end='')
+    print(f'{Colors.YELLOW}HALL OF FAME!{Colors.WHITE}')
     pause()
     clear_terminal()
     game_menu()
+
 
 def game_menu():
     """
@@ -99,14 +119,14 @@ def game_menu():
     game_header()
     menu_options = True
     while menu_options:
-        print('press ' + Colors.BLUE + '1' + Colors.WHITE +
-            ' to start game\n'
-            'press ' + Colors.BLUE + '2' + Colors.WHITE +
-            ' to view rules\n'
-            'press ' + Colors.BLUE + '3' + Colors.WHITE +
-            ' to view hall of fame\n'
-            'press ' + Colors.BLUE + '4' + Colors.WHITE +
-            ' to quit\n')  
+        print(f'Press {Colors.BLUE}1{Colors.WHITE} ', end='')
+        print(f'to {Colors.GREEN}Start Game{Colors.WHITE}')
+        print(f'Press {Colors.BLUE}2{Colors.WHITE} ', end='')
+        print(f'to {Colors.VIOLET}View Game Rules{Colors.WHITE}')
+        print(f'Press {Colors.BLUE}3{Colors.WHITE} ', end='')
+        print(f'to view {Colors.YELLOW}Hall of Fame{Colors.WHITE}')
+        print(f'Press {Colors.BLUE}4{Colors.WHITE}', end='')
+        print(f'to {Colors.RED}quit the game{Colors.WHITE}')
         option = input().upper()
         if option == '1':
             menu_options = False
@@ -125,6 +145,7 @@ def game_menu():
         else:
             print('not a valid menu option, please try again.\n')
 
+
 def start_game(word):
     '''
     Starts the game.
@@ -138,7 +159,7 @@ def start_game(word):
     hidden_word = '_' * len(word)
     guessed = False
     letter_guess = []
-    tries = 6 
+    tries = 6
     clear_terminal()
     game_header()
     print(f'number of tries left: {Colors.BLUE}{tries}{Colors.WHITE}\n')
@@ -155,7 +176,7 @@ def start_game(word):
                 tries = 0
             elif(guess_letter == 'CHEAT'):
                 print(word)
-                continue                
+                continue
             elif(len(guess_letter) > 1):
                 raise ValueError(
                     f'please enter only one character per try, you entered {len(guess_letter)} characters'
@@ -174,14 +195,11 @@ def start_game(word):
                     game_header()
                     print(f'{Colors.RED}{guess_letter}{Colors.WHITE} is not in the word', end='')
                     print(f' you lost {Colors.RED}1 life{Colors.WHITE}\n')
-                    
                     letter_guess.append(guess_letter)
                     tries -= 1
                     print(f'Number of tries left: {Colors.BLUE}{tries}{Colors.WHITE}\n')
-
-                    player_score[player] -=1
+                    player_score[player] -= 1
                     print(f'your current score is {Colors.GREEN}{player_score[player]}{Colors.WHITE}\n')
-
                 else:
                     clear_terminal()
                     game_header()

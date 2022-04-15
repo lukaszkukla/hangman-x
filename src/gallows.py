@@ -33,7 +33,7 @@ def display_hangman(tries):
                ''',
         # head, torso, and one arm
         '''
-                  --------O
+                  --------
                   |      |
                   |      O
                   |     \|

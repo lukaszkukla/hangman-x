@@ -1,85 +1,84 @@
 # HANGMAN-X.com 
 
-[view the live site here](https://lukaszkukla)
+[View the live site here](https://lukaszkukla)
 
-[github](https://github.com/lukaszkukla/hangman-x)
+[GitHub](https://github.com/lukaszkukla/hangman-x)
 
-# goal of this project
+# Goal of this project
 Welcome to HANGMAN-X. This is na interactive game which runs in Python terminal. It was built using Code Institute [terminal template](https://github.com/Code-Institute-Org/python-essentials-template) which runs in web browser and deployed on Heroku. 
 
-It is a third project on my journey with [code institute](https://codeinstitute.net/ie/) to become a fullstack web developer. It is intended to put my knowledge into practice.
+It is a third project on my journey with [Code Institute](https://codeinstitute.net/ie/) to become a fullstack web developer. It is intended to put my knowledge into practice.
 
 [Hangman game](https://en.wikipedia.org/wiki/Hangman_(game)#:~:text=Though%20the%20origins%20of%20the,to%20fill%20in%20the%20blanks.) requires user to guess the secret word by guessing the individual letters. Users have 6 attempts per word to beat the game before they will be 'hanged'.
 
-My version of the game allows user to choose between 3 levels of difficutly. Game continues until user stops, loose all lives or resign.
+My version of the game calls for random word via API. Game continues until user stops, loose all lives or resign.
 
-![responisive design](docs/screenshots/responsive-design.jpg "responive design for variouse device sizes")
+For the purpose of testing its functionality user may enter word 'cheat' to get a hint of the hidden word. This functionality is only for [Code Institute](codeinstitute.com) the grading purposes.
 
-# table of contents
+# Table of contents
 
-* [ux](#ux "ux")
-    * [user goals](#user-goals "user goals")
-    * [user stories](#user-stories "user stories")
-    * [user requirements and expectations](#user-requirements-and-expectations "user requirements and expectations")
-         * [requirements](#requirements "requirements")
-         * [expectations](#expectations "expectations")
-         * [flow chart](#flow-chart "flow chart")
-     * [design choices](#design-choices "design choices")
-        * [fonts](#fonts "fonts")
-        * [colors](#colors "colors")
-    * [wireframes](#wireframes "wireframes")
-    * [features](#features "features")
-        * [existing features](#existing-features "existing features")
-            * [main game](#main-game "main game")           
-        * [future developments](#future-developments "future developments")
-    * [technologies used](#technologies-used "technologies used")
-        * [languages](#languages "languages")
-        * [libraries and frameworks](#libraries-and-frameworks "libraries and frameworks")
-        * [tools](#tools "tools")
-    * [testing](#testing "testing")
-        * [images](#images "images")
-        * [during testing](#during-testing "during testing") 
-        * [unfixed bugs](#unfixed-bugs "unfixed bugs")        
-    * [deployment](#deployment "deployment")
-        * [Heroku](#Heroku-deployment "heroku deployment")
-    * [cloning repository](#cloning-repository "cloning repository")
-    * [credits](#credits "credits")
+* [UX](#ux "UX")
+    * [User goals](#user-goals "User goals")
+    * [User stories](#user-stories "User stories")
+    * [User requirements and expectations](#user-requirements-and-expectations "user requirements and expectations")
+         * [Requirements](#requirements "Requirements")
+         * [Expectations](#expectations "Expectations")
+         * [Flow chart](#flow-chart "Flow chart")
+     * [Design choices](#design-choices "Design choices")
+        * [Fonts](#fonts "Fonts")
+        * [Colors](#colors "Colors")
+    * [Wireframes](#wireframes "Wireframes")
+    * [Features](#features "Features")
+        * [Existing features](#existing-features "Existing features")
+            * [Main game](#main-game "Main game")           
+        * [Future developments](#future-developments "Future developments")
+    * [Technologies used](#technologies-used "Technologies used")
+        * [Languages](#languages "Languages")
+        * [Libraries and frameworks](#libraries-and-frameworks "Libraries and frameworks")
+        * [Tools](#tools "Tools")
+    * [Testing](#testing "Testing")
+        * [Images](#images "Images")
+        * [During testing](#during-testing "During testing") 
+        * [Unfixed bugs](#unfixed-bugs "Unfixed bugs")        
+    * [Deployment](#deployment "Deployment")
+        * [Heroku](#Heroku-deployment "Heroku deployment")
+    * [Cloning repository](#cloning-repository "Cloning repository")
+    * [Credits](#credits "Credits")
     
-# ux
+# UX
 
-## user goals
-* intuitive and responsive to user's interaction
-* easily navigated around
-* choice of difficulty levels
-* high scores should be stored and accessible to other users to view it
+## User goals
+* Intuitive and responsive to user's interaction
+* Easily navigated around
+* High scores should be stored and accessible to other users to view it
 
-## user stories
-* as a user, I want to see welcome page with menu option
-* as a user, I want to know how the game works (help)
-* as a user, I want to see list of 10 best players
-* as a user, I want to be able to choose difficulty level
-* as a user, I want to see my score
-* as a user, I want to stop game at any time
-* as a user, I want to track number of correct guessed words
-* as a user, I want to see the final score upon game completion
+## User stories
+As a user, I want to:
+* See welcome page with menu option
+* Know how the game works (how to)
+* See list of 10 best players
+* See my score
+* Stop game at any time
+* Track number of correct guessed words
+* See the final score upon game completion
 
-## user requirements and expectations
+## User requirements and expectations
 
-### requirements
-* fetch data from [google sheets](https://docs.google.com/spreadsheets/d/1jcsqlHpeQ3zNnlo41blYo2_BDiXg_OEw_oLaPTjD4dM/edit?usp=sharing) - read only access
-* randomise questions on reload
-* visually neat and tidy design
+### Requirements
+* Fetch data from [google sheets](https://docs.google.com/spreadsheets/d/1jcsqlHpeQ3zNnlo41blYo2_BDiXg_OEw_oLaPTjD4dM/edit?usp=sharing) - read only access
+* Randomise questions on reload
+* Visually neat and tidy design
 
-### expectations
+### Expectations
 * I expect game to function without any errors
 * I expect clear and simple navigation
 * I expect appropriate response to user inputs
 * I expect words to not to repeat over and over
 
-## flow chart
+## Flow chart
 In order to meet above requirements and expectations I built flowchart which served me as a road map to successfull completion of the project:
 
-![HANGMAN-X flowchart](docs/wireframes/HANGMAN-X-flowchart.jpg "game flowchart")
+![HANGMAN-X flowchart](docs/wireframes/hangman-x-flowchart.jpg "Game flowchart")
 
 \
 &nbsp;
@@ -87,18 +86,25 @@ In order to meet above requirements and expectations I built flowchart which ser
 \
 &nbsp;
 
-## design choices
+## Design choices
 
-### fonts
+### Fonts
 I used [Google Fonts](https://fonts.google.com/ "Google Fonts"). The font used for the entire website is [Poppins](https://fonts.google.com/specimen/Roboto+Slab?query=rob "Poppins"). 
 
-The use of **small caps** on the website is **intentional** and is part of the design. This also applies to readme.md file.
+### Colors
 
-### colors
-
-![color Pallete](docs/screenshots/color-pallette.jpg)
+![Color palette](docs/screenshots/color-palette.jpg "Color palette")
  
- * white: #fff; - main font color
+ * RED = '\033[91m'
+ * VIOLET = '\033[95m'
+ * BLUE = '\033[94m'
+ * CYAN = '\033[96m'
+ * GREEN = '\033[92m'
+ * YELLOW = '\033[93m'    
+ * ORANGE = '\001[32;1m'
+ * WHITE = '\033[0m'
+ * BOLD = '\033[1m'
+ * UNDERLINE = '\033[4m'
 
 \
 &nbsp;
@@ -111,11 +117,11 @@ I use [diagrams.net](https://www.diagrams.net/ "diagrams.net") to develop wirefr
 
 The wireframe of pages below:
 
-* game screen wireframes
+* Game screen wireframes
 \
 &nbsp;
 
-![index page](docs/wireframes/HANGMAN-X-wireframes.jpg "game screens wireframes")
+![Index page](docs/wireframes/hangman-x-wireframes.jpg "Game screens wireframes")
 
 \
 &nbsp;
@@ -123,76 +129,81 @@ The wireframe of pages below:
 \
 &nbsp;
 
-# features
+# Features
 
-## welcome screen
-user can access four options from the welcome screen:
-1. start the game
-1. how to play
-1. hall of fame
-1. quite game
+## Welcome screen
+User can access four options from the welcome screen:
+1. Start the game
+1. How to play
+1. Hall of fame
+1. Quite game
 
-![welcome screen](docs/wireframes/HANGMAN-X-welcome.jpg "HANGMAN-X welcome screen")
+![Welcome screen](docs/screenshots/hangman-x-welcome.jpg "HANGMAN-X welcome screen")
 
-### welcome screen error handling
-* user must enter 1 of the 4 options anything else will trigger warning message
+### Welcome screen error handling
+* User must enter 1 of the 4 options anything else will trigger warning message
 
-![welcome screen error handling](docs/wireframes/HANGMAN-X-welcome.jpg "HANGMAN-X welcome screen error handling")
+![Welcome screen error handling](docs/screenshots/hangman-x-welcome-errors.jpg "HANGMAN-X welcome screen error handling")
 
-### rules
-the rules are broken into 2 screens with 'press any key to continue...' in between
+### Rules
+The rules display information on how game works and wait for user input 'press ENTER to continue...' to get back to main menu.
 
-![rules screen 1/2](docs/wireframes/HANGMAN-X-rules-001.jpg "HANGMAN-X rules screen 1/2")
+![Rules screen](docs/screenshots/hangman-x-rules.jpg "HANGMAN-X rules screen")
 
 
-![rules screen 2/2](docs/wireframes/HANGMAN-X-rules-002.jpg "HANGMAN-X rules screen 2/2")
-
-### gameplay
-- user can choose the difficulty level upon game startup
-- guess words are picked from database based on the difficulty level
-- user must enter letters to guess the first and subsequent words in the game
-- user advances to the next word when all letters of current has been revealed
-- game ends when:
-    - user runs out of tries
-    - user guess all available words from the database
-    - user types *'resign'* at any stage during the game
+### Gameplay
+- Player is prompted to enter its name at the start of the game 
+- Guess word is picked randomly via API call to [Random word API](https://random-word-api.herokuapp.com/home "Random word API"), masked and displayed to user as string of '_' underscores 
+- User must enter letters to guess the first and subsequent hidden letters in the game
+- User advances to the next word when all the letters of current word has been revealed
+- Game ends when:
+    - User runs out of tries
+    - User choose to not continue after successful word guess
+    - User types *'resign'* at any stage during the game
 - keyword *'resign'* completes the game in its current state and adds user to the hall of fame if enough points accumulated
-- only the user who accumulates enough points will get an honour to be added to the hall of fame and will be prompted to add her/his name at the end of the game - this is design from old arcade games of 80's and 90's ;-)
+- Only the user who accumulates enough points will get an honour to be added to the hall of fame
 
-#### tries
-each missed letter will decrease user's life by 1 point and add another body part to the gallows:
+#### Scoring system
+* Each successfuly guessed letter adds 1 point to the final score
+* Guessing the whole word add 10 points to the player's score
+* Each unsuccessful try cost player 1 point
 
-* initial state
-![HANGMAN-X gallows initial state](docs/wireframes/HANGMAN-X-gallows-state-001.jpg "HANGMAN-X gallows initial state")
+#### Tries
+Player starts game with 6 lives. Each successful guess saves user from losing a life.
+Each unsuccessful try will decrease user's life by 1 point and add a body part to the gallows:
 
-* head
+* Initial state
 
-![HANGMAN-X gallows 5 tries](docs/wireframes/HANGMAN-X-gallows-state-002.jpg "HANGMAN-X gallows with head")
+![HANGMAN-X gallows initial state](docs/screenshots/hangman-x-gallows-state-001.jpg "HANGMAN-X gallows initial state")
 
-* head and torso
+* Head
 
-![HANGMAN-X gallows 4 tries](docs/wireframes/HANGMAN-X-gallows-state-003.jpg "HANGMAN-X gallows with head and torso")
+![HANGMAN-X gallows 5 tries](docs/screenshots/hangman-x-gallows-state-002.jpg "HANGMAN-X gallows with head")
 
-* head, torso, and one arm
+* Head and torso
 
-![HANGMAN-X gallows 3 tries](docs/wireframes/HANGMAN-X-gallows-state-004.jpg "HANGMAN-X gallows with head, torso, and one arm")
+![HANGMAN-X gallows 4 tries](docs/screenshots/hangman-x-gallows-state-003.jpg "HANGMAN-X gallows with head and torso")
 
-* head, torso, and both arms
+* Head, torso, and one arm
 
-![HANGMAN-X gallows 2 tries](docs/wireframes/HANGMAN-X-gallows-state-005.jpg "HANGMAN-X gallows with head, torso, and both arms")
+![HANGMAN-X gallows 3 tries](docs/screenshots/hangman-x-gallows-state-004.jpg "HANGMAN-X gallows with head, torso, and one arm")
 
-* head, torso, both arms, and one leg
+* Head, torso, and both arms
 
-![HANGMAN-X gallows 1 try](docs/wireframes/HANGMAN-X-gallows-state-006.jpg "HANGMAN-X gallows with head, torso, both arms, and one leg")
+![HANGMAN-X gallows 2 tries](docs/screenshots/hangman-x-gallows-state-005.jpg "HANGMAN-X gallows with head, torso, and both arms")
 
-* final state: head, torso, both arms, and both legs
+* Head, torso, both arms, and one leg
 
-![HANGMAN-X gallows final state](docs/wireframes/HANGMAN-X-gallows-state-007.jpg "HANGMAN-X final state gallows with head, torso, both arms, and both legs")
+![HANGMAN-X gallows 1 try](docs/screenshots/hangman-x-gallows-state-006.jpg "HANGMAN-X gallows with head, torso, both arms, and one leg")
+
+* Final state: head, torso, both arms, and both legs
+
+![HANGMAN-X gallows final state](docs/screenshots/hangman-x-gallows-state-007.jpg "HANGMAN-X final state gallows with head, torso, both arms, and both legs")
 
 #### error handling
 - user can only enter letters, numbers and special characters are not allowed and will prompt the user:
 
-![gameplay error handling](docs/wireframes/HANGMAN-X-gameplay-error-handling-001.jpg "gameplay error handling ")
+![Gameplay error handling](docs/screenshots/hangman-x-gameplay-error-handling.jpg "gameplay error handling ")
 \
 &nbsp;
 
@@ -201,8 +212,8 @@ each missed letter will decrease user's life by 1 point and add another body par
 &nbsp;
 
 ## future developments
-* allow user to sacrifice some points to reveal 1 random letter per word
-* make it more visually appealing with Colorama library
+* Allow user to sacrifice some points to reveal 1 random letter per word
+* Make it more visually appealing with Colorama library
 
 \
 &nbsp;
@@ -228,11 +239,11 @@ each missed letter will decrease user's life by 1 point and add another body par
 * [W3C HTML Validation Service](https://validator.w3.org/ "W3C HTML")
 * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/ "W3C CSS")
 * [PEP8](http://pep8online.com/ "Python Validator")
-* [autoprefixer](https://autoprefixer.github.io/ "autoprefixer")
-* [lighthouse](https://developers.google.com/web/tools/lighthouse "lighthouse")
-* [text to ASCII generator](http://patorjk.com/software/taag/ "taag")
+* [Autoprefixer](https://autoprefixer.github.io/ "Autoprefixer")
+* [Lighthouse](https://developers.google.com/web/tools/lighthouse "Lighthouse")
+* [Text to ASCII generator](http://patorjk.com/software/taag/ "taag")
 * [Enchanted Learning](https://www.enchantedlearning.com/wordlist/ "word lists")
-* [vecteezy](https://www.vecteezy.com/ "vecteezy")
+* [Vecteezy](https://www.vecteezy.com/ "vecteezy")
 * [WebFX](https://www.webfx.com/web-design/color-picker/F1F1F1/ "WebFX color scheme generator")
 * [TinyPNG](https://tinypng.com/ "TinyPNG")
 * [Photoshop](https://www.adobe.com/ie/products/photoshop.html "Adobe Photoshop")
@@ -283,7 +294,7 @@ All images on the website were compressed using [TinyPNG](https://tinypng.com/ "
 \
 &nbsp;
 
-## unfixed bugs
+## Unfixed bugs
 Games is not responsive. It is not recommended to play on mobile devices. The Code Institute's Python terminal emulator is not build to be scaled down to fit small screens
 
 \
@@ -292,35 +303,35 @@ Games is not responsive. It is not recommended to play on mobile devices. The Co
 \
 &nbsp;
 
-# deployment
+# Deployment
 ## Heroku deployment  
   
 The project was deployed to [Heroku](https://www.heroku.com) using the below procedure:-    
   
-1. log in to [Heroku](https://id.heroku.com/login) or [sign up](https://signup.heroku.com/login) for free account
-1. click **new** button in the top right corner
-1. select **create new app** from the drop down list
-1. enter a unique app name in the 'App name' input field - green thick will appear to confirm availability
-1. select appropriate **region** to your location from the 'choose a region' drop down list
-1. click **create app** button to proceed
-1. 'deploy' tab will be shown. scroll down to the **config vars** section in the **settings** tab
-1. click **reveal config vars** button
-1. enter **PORT** in the 'KEY' field
-1. enter **8000** in the 'VALUE' filed
-1. click the **add** button
-1. below, in the **buildpacks** section click **add buildpack** button
-1. type and select 'Python' and click 'save changes' button
-1. repeat above step to add 'node.js' pack
+1. Log in to [Heroku](https://id.heroku.com/login) or [sign up](https://signup.heroku.com/login) for free account
+1. Click **new** button in the top right corner
+1. Select **create new app** from the drop down list
+1. Enter a unique app name in the 'App name' input field - green thick will appear to confirm availability
+1. Select appropriate **region** to your location from the 'choose a region' drop down list
+1. Click **create app** button to proceed
+1. 'Deploy' tab will be shown. scroll down to the **config vars** section in the **settings** tab
+1. Click **reveal config vars** button
+1. Enter **PORT** in the 'KEY' field
+1. Enter **8000** in the 'VALUE' filed
+1. Click the **add** button
+1. Below, in the **buildpacks** section click **add buildpack** button
+1. Type and select 'Python' and click 'save changes' button
+1. Repeat above step to add 'node.js' pack
 \
 &nbsp;
    * **IMPORTANT** The buildpacks **must** be in this **particular order**. If they are not, then click and drag to change it
    \
 &nbsp;
-1. select **Github** as the deployment method from the **deploy tab**
-1. connect to Github to confirm
-1. type repository name and click **search** button
-1. click **connect** button that appeared next to your repository name
-1. select your preferred deployment type:
+1. Select **Github** as the deployment method from the **deploy tab**
+1. Connect to Github to confirm
+1. Type repository name and click **search** button
+1. Click **connect** button that appeared next to your repository name
+1. Select your preferred deployment type:
    * 'Enable Automatic Deploys' for automatic deployments when you push updates to Github - NOT RECOMMENDED if you have a free account  
    * 'Deploy Branch' for manual deployments - RECOMMENDED for free account users
 
@@ -351,9 +362,9 @@ Due to this, I optimized the game to work via the [final Heroku deployment](http
 
 * [Sam Timmins](https://github.com/sam-timmins/T4Tri-triathlon-club "Sam Timmins") - for readme template, structure and some ideas that sparked from using it
 
-* peer community on [code institute](codeinstitute.com) slack channel
+* Peer community on [Code Institute](https://codeinstitute.net/ie/) Slack channel
 
-* kasia_ci from [code institute](codeinstitute.com) - for keeping up the spirit and leading weekly standups
+* Kasia_ci from [Code Institute](https://codeinstitute.net/ie/) - for keeping up the spirit and leading weekly standups
 
 \
 &nbsp;
