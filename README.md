@@ -29,7 +29,6 @@ For the purpose of testing its functionality user may enter word 'cheat' to get 
         * [Colors](#colors "Colors")
     * [Features](#features "Features")
         * [Existing features](#existing-features "Existing features")
-            * [Main game](#main-game "Main game")           
         * [Future developments](#future-developments "Future developments")
     * [Technologies used](#technologies-used "Technologies used")
         * [Languages](#languages "Languages")
@@ -129,13 +128,12 @@ User can access four options from the welcome screen:
 
 ![Welcome screen error handling](docs/screenshots/hangman-x-main-menu-errors.jpg "HANGMAN-X main menu screen error handling")
 
-### Rules
+## Rules
 The rules display information on how game works and wait for user input 'press ENTER to continue...' to get back to main menu.
 
 ![Rules screen](docs/screenshots/hangman-x-rules.jpg "HANGMAN-X rules screen")
 
-
-### Gameplay
+## Gameplay
 - Player is prompted to enter its name at the start of the game 
 - Guess word is picked randomly via API call to [Random word API](https://random-word-api.herokuapp.com/home "Random word API"), masked and displayed to user as string of '_' underscores 
 - User must enter letters to guess the first and subsequent hidden letters in the game
