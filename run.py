@@ -1,9 +1,9 @@
-from src.menu import welcome_screen
+from src.game import game_menu
 
 def main():
     """
     Run all program functions.
     """
-    welcome_screen()    
+    game_menu()  
     
 main()
