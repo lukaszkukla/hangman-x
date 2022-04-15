@@ -141,6 +141,8 @@ def game_menu():
             hall_of_fame_header()
             hall_of_fame_scores()
         elif option == '4':
+            print('Thank you for playing. I hope you enjoyed it.\n')
+            print('Shutting down...')
             exit()
         else:
             print(f'{option} is not a valid menu option, please try again.\n')
