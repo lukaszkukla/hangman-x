@@ -3,12 +3,13 @@ import requests
 
 APIURL = 'https://random-word-api.herokuapp.com'
 
-def get_word():  
+
+def get_word():
     '''
     Gets the word from the API
-    '''  
+    '''
     res = requests.get(f'{APIURL}/word')
-    try:        
+    try:
         res.raise_for_status()
         return res.json()[0]
     except requests.exceptions.InvalidURL as erru:
@@ -21,4 +22,3 @@ def get_word():
         print(f'connection timeout error {errt}')
     except requests.exceptions.RequestException as err:
         print(f'unknown exception error {err}')
-

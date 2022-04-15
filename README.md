@@ -27,7 +27,6 @@ For the purpose of testing its functionality user may enter word 'cheat' to get 
      * [Design choices](#design-choices "Design choices")
         * [Fonts](#fonts "Fonts")
         * [Colors](#colors "Colors")
-    * [Wireframes](#wireframes "Wireframes")
     * [Features](#features "Features")
         * [Existing features](#existing-features "Existing features")
             * [Main game](#main-game "Main game")           
@@ -37,8 +36,10 @@ For the purpose of testing its functionality user may enter word 'cheat' to get 
         * [Libraries and frameworks](#libraries-and-frameworks "Libraries and frameworks")
         * [Tools](#tools "Tools")
     * [Testing](#testing "Testing")
+        * [Markup validation](#markup-validation "Markup validation")
+        * [CSS validation](#markup-validation "CSS validation")
+        * [Python validation](#markup-validation "Python validation")
         * [Images](#images "Images")
-        * [During testing](#during-testing "During testing") 
         * [Unfixed bugs](#unfixed-bugs "Unfixed bugs")        
     * [Deployment](#deployment "Deployment")
         * [Heroku](#Heroku-deployment "Heroku deployment")
@@ -78,7 +79,7 @@ As a user, I want to:
 ## Flow chart
 In order to meet above requirements and expectations I built flowchart which served me as a road map to successfull completion of the project:
 
-![HANGMAN-X flowchart](docs/wireframes/hangman-x-flowchart.jpg "Game flowchart")
+![HANGMAN-X flowchart](docs/screenshots/hangman-x-flowchart.jpg "Game flowchart")
 
 \
 &nbsp;
@@ -112,23 +113,6 @@ I used [Google Fonts](https://fonts.google.com/ "Google Fonts"). The font used f
 \
 &nbsp;
 
-# wireframes
-I use [diagrams.net](https://www.diagrams.net/ "diagrams.net") to develop wireframes for the website. 
-
-The wireframe of pages below:
-
-* Game screen wireframes
-\
-&nbsp;
-
-![Index page](docs/wireframes/hangman-x-wireframes.jpg "Game screens wireframes")
-
-\
-&nbsp;
-[back to top](#table-of-contents)
-\
-&nbsp;
-
 # Features
 
 ## Welcome screen
@@ -138,12 +122,12 @@ User can access four options from the welcome screen:
 1. Hall of fame
 1. Quite game
 
-![Welcome screen](docs/screenshots/hangman-x-welcome.jpg "HANGMAN-X welcome screen")
+![Welcome screen](docs/screenshots/hangman-x-main-menu.jpg "HANGMAN-X main menu screen")
 
 ### Welcome screen error handling
 * User must enter 1 of the 4 options anything else will trigger warning message
 
-![Welcome screen error handling](docs/screenshots/hangman-x-welcome-errors.jpg "HANGMAN-X welcome screen error handling")
+![Welcome screen error handling](docs/screenshots/hangman-x-main-menu-errors.jpg "HANGMAN-X main menu screen error handling")
 
 ### Rules
 The rules display information on how game works and wait for user input 'press ENTER to continue...' to get back to main menu.
@@ -211,9 +195,15 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 \
 &nbsp;
 
-## future developments
+## Future developments
+* Add difficulty 3 difficulty levels:
+    * Easy - up to 5 letters
+    * Medium - between 6 and 10 letters
+    * Hard - 11 to 15 letters
+* Add language options
 * Allow user to sacrifice some points to reveal 1 random letter per word
 * Make it more visually appealing with Colorama library
+* Refactor the code and split larger functions into their own files
 
 \
 &nbsp;
@@ -221,9 +211,9 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 \
 &nbsp;
 
-# technologies used
+# Technologies used
 
-## languages
+## Languages
 * [HTML](https://en.wikipedia.org/wiki/HTML "HTML")
 * [CSS](https://en.wikipedia.org/wiki/CSS "CSS")
 * [Python](https://www.python.org/ "Python")
@@ -232,7 +222,7 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 * [Google Fonts](https://fonts.google.com/ "Google Fonts")
 * [Font Awesome library](https://fontawesome.com/ "Font Awesome")
 
-## tools
+## Tools
 * [Gitpod](https://www.gitpod.io/ "Gitpod")
 * [Github](https://www.github.com/ "Github")
 * [diagrams.net](https://diagrams.net/ "diagrams.net")
@@ -254,15 +244,22 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 \
 &nbsp;
 
-# testing
+# Testing
+During the development, I tested my game in the terminal of VScode. I also used done it directly in the Code Institute's terminal template after final deployment.
 
-I used print statements for every piece of code that I worked on to test if it is performing as expected. Any bugs were corrected 'on the fly' while building the app
+I used print statements for every piece of code that I worked on to test if it is performing as expected. Any bugs were corrected 'on the fly' while building the app.
+
+For the final test I tried each of the menu and game functions and performed below test to ensure correct functionality of the game:
+* Entering invalid charcters, multiple characters, blanks(empty or space) and special characters:
+    * In main game menu
+    * During username input
+    * During the game when guessing the letters
+    * In 'play again' menu option after winning and losing the game
+* Adding over 100 player names to google sheet file to ensure still sorting and display correctly
+* API calls were returning the same word over and over. I moved *'res = requests.get(f'{APIURL}/word')'* into the *get_word()* function and that fixed the problem.
 
 ### Markup Validation
 I tested my application with [W3C Markup Validation Service](https://validator.w3.org/ "Markup validation service").
-
-
-![Markup Validation](docs/screenshots/markup-validation.jpg "validation of the markup of HANGMAN-X")
 
 ### CSS Validation
 Subsequently validated my css styles using [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/ "W3C CSS Validation Service").
@@ -270,12 +267,26 @@ Subsequently validated my css styles using [W3C CSS Validation Service](https://
 ![CSS Validation](docs/screenshots/css-validation.jpg "validation of the CSS of HANGMAN-X")
 
 ### Python Validation
-Python code was validated using ![Python Validation](docs/screenshots/python-validation.jpg "validation of the Python code of HANGMAN-X")
+Python code was validated using [PEP8 online](http://pep8online.com/ "PEP8 online").
 
-### Accessibility Validation
-Accessibility test was done via [experte.com](https://www.experte.com/accessibility "accessibility testing").
+#### Before
 
-![Accessibility Test Initial](docs/screenshots/accessibility-validation.jpg "accessibility test of HANGMAN-X").
+* game.py
+
+![Markup Validation](docs/screenshots/markup-validation-before.png "validation of the markup of HANGMAN-X")
+
+#### After
+* game.py
+
+![Markup Validation](docs/screenshots/markup-validation-after-001.png "validation of the markup of HANGMAN-X")
+
+* utils.py
+
+![Markup Validation](docs/screenshots/markup-validation-after-002.png "validation of the markup of HANGMAN-X")
+
+* api.py
+
+![Markup Validation](docs/screenshots/markup-validation-after-003.png "validation of the markup of HANGMAN-X")
 
 ### Lighthouse
 
@@ -286,7 +297,7 @@ Final testing was performed by Google's [Lighthouse](https://developers.google.c
 ### Images
 All images on the website were compressed using [TinyPNG](https://tinypng.com/ "tinypng.com for image compression")
 
-![TinyPNG image compression results](docs/screenshots/background-optimised-tinyPNG.jpg "image compression results")
+![TinyPNG image compression results](docs/screenshots/hangman-x-background-optimisation.jpg "image compression results")
 
 \
 &nbsp;
@@ -295,7 +306,8 @@ All images on the website were compressed using [TinyPNG](https://tinypng.com/ "
 &nbsp;
 
 ## Unfixed bugs
-Games is not responsive. It is not recommended to play on mobile devices. The Code Institute's Python terminal emulator is not build to be scaled down to fit small screens
+Games is not responsive. It is not recommended to play on mobile devices. The Code Institute's Python terminal emulator is not build to be scaled down to fit small screens.
+Also other python files show minor 'trailing whitespace' and 'indentation' errors when checked with PEP8 online. They do not have any impact on functionality of the game and user experience.
 
 \
 &nbsp;
@@ -361,6 +373,8 @@ Due to this, I optimized the game to work via the [final Heroku deployment](http
 * [Simen Daehlin](https://github.com/Eventyret "Simen Daehlin") - for code inspiration, help and advice
 
 * [Sam Timmins](https://github.com/sam-timmins/T4Tri-triathlon-club "Sam Timmins") - for readme template, structure and some ideas that sparked from using it
+
+* [David Bowers](https://github.com/dnlbowers "David Bowers GitHub") - for interesting approaches to some code challenges
 
 * Peer community on [Code Institute](https://codeinstitute.net/ie/) Slack channel
 
