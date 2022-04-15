@@ -1,14 +1,13 @@
 import requests
-
+from src.lang import language
 
 APIURL = 'https://random-word-api.herokuapp.com'
 
-
-def get_word():
+def get_word(lang='en'):
     '''
     Gets the word from the API
     '''
-    res = requests.get(f'{APIURL}/word')
+    res = requests.get(f'{APIURL}/word?lang={lang}')
     try:
         res.raise_for_status()
         return res.json()[0]

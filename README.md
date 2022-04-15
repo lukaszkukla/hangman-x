@@ -1,17 +1,17 @@
-# HANGMAN-X.com 
+# HANGMAN-X
 
 [View the live deployment here](https://hangman-x-2022.herokuapp.com/)
 
 [GitHub](https://github.com/lukaszkukla/hangman-x)
 
 # Goal of this project
-Welcome to HANGMAN-X. This is na interactive game which runs in Python terminal. It was built using Code Institute [terminal template](https://github.com/Code-Institute-Org/python-essentials-template) which runs in web browser and deployed on Heroku. 
+Welcome to HANGMAN-X. This is na interactive game which runs in Python terminal. It was built using Code Institute [template](https://github.com/Code-Institute-Org/python-essentials-template) which runs in web browser and is deployed on Heroku. 
 
 It is a third project on my journey with [Code Institute](https://codeinstitute.net/ie/) to become a fullstack web developer. It is intended to put my knowledge into practice.
 
-[Hangman game](https://en.wikipedia.org/wiki/Hangman_(game)#:~:text=Though%20the%20origins%20of%20the,to%20fill%20in%20the%20blanks.) requires user to guess the secret word by guessing the individual letters. Users have 6 attempts per word to beat the game before they will be 'hanged'.
+[Hangman game](https://en.wikipedia.org/wiki/Hangman_(game)#:~:text=Though%20the%20origins%20of%20the,to%20fill%20in%20the%20blanks.) requires user to reveal the secret word by guessing the individual letters. Player have 6 attempts per word to beat the game before it will be 'hanged'.
 
-My version of the game calls for random word via API. Game continues until user stops, loose all lives or resign.
+My version of the game calls for random word via API. Player can enter its name and choose between 2 languages. Game continues until user stops, loose all lives or resigns.
 
 For the purpose of testing its functionality user may enter word **'cheat'** to get a hint of the hidden word. This functionality is only for the [Code Institute](codeinstitute.com) testing and grading purposes.
 
@@ -27,10 +27,8 @@ For the purpose of testing its functionality user may enter word **'cheat'** to 
          * [Expectations](#expectations "Expectations")
          * [Flow chart](#flow-chart "Flow chart")
      * [Design choices](#design-choices "Design choices")
-        * [Fonts](#fonts "Fonts")
         * [Colors](#colors "Colors")
     * [Features](#features "Features")
-        * [Existing features](#existing-features "Existing features")
         * [Future developments](#future-developments "Future developments")
     * [Technologies used](#technologies-used "Technologies used")
         * [Languages](#languages "Languages")
@@ -43,8 +41,8 @@ For the purpose of testing its functionality user may enter word **'cheat'** to 
         * [Images](#images "Images")
         * [Unfixed bugs](#unfixed-bugs "Unfixed bugs")        
     * [Deployment](#deployment "Deployment")
-        * [Heroku](#Heroku-deployment "Heroku deployment")
-    * [Cloning repository](#cloning-repository "Cloning repository")
+        * [Heroku](#heroku "Heroku deployment")
+    * [Cloning repository](#gitpod-terminal-or-local-machine "Cloning repository")
     * [Credits](#credits "Credits")
     
 # UX
@@ -63,12 +61,14 @@ As a user, I want to:
 * Stop game at any time
 * Track number of correct guessed words
 * See the final score upon game completion
+* Change language of guessed words
 
 ## User requirements and expectations
 
 ### Requirements
-* Fetch data from [google sheets](https://docs.google.com/spreadsheets/d/1jcsqlHpeQ3zNnlo41blYo2_BDiXg_OEw_oLaPTjD4dM/edit?usp=sharing) - read only access
-* Randomise questions on reload
+* Fetch random words via API call from [Random Word API](https://random-word-api.herokuapp.com/home "Random Word API")
+* Language options
+* Record player score in [google sheets](https://docs.google.com/spreadsheets/d/1jcsqlHpeQ3zNnlo41blYo2_BDiXg_OEw_oLaPTjD4dM/edit?usp=sharing)
 * Visually neat and tidy design
 
 ### Expectations
@@ -89,9 +89,6 @@ In order to meet above requirements and expectations I built flowchart which ser
 &nbsp;
 
 ## Design choices
-
-### Fonts
-I used [Google Fonts](https://fonts.google.com/ "Google Fonts"). The font used for the entire website is [Poppins](https://fonts.google.com/specimen/Roboto+Slab?query=rob "Poppins"). 
 
 ### Colors
 
@@ -116,6 +113,9 @@ I used [Google Fonts](https://fonts.google.com/ "Google Fonts"). The font used f
 
 # Features
 
+## Game template and background
+I modified [Code Institute's template](https://github.com/Code-Institute-Org/python-essentials-template "Code Institute's template") for better user experience and visual design. Terminal is centered on the width and there is a custom background behind it.
+
 ## Welcome screen
 User can access four options from the welcome screen:
 1. Start the game
@@ -125,18 +125,14 @@ User can access four options from the welcome screen:
 
 ![Welcome screen](docs/screenshots/hangman-x-main-menu.jpg "HANGMAN-X main menu screen")
 
-### Welcome screen error handling
-* User must enter 1 of the 4 options anything else will trigger warning message
-
-![Welcome screen error handling](docs/screenshots/hangman-x-main-menu-errors.jpg "HANGMAN-X main menu screen error handling")
-
 ## Rules
 The rules display information on how game works and wait for user input 'press ENTER to continue...' to get back to main menu.
 
 ![Rules screen](docs/screenshots/hangman-x-rules.jpg "HANGMAN-X rules screen")
 
 ## Gameplay
-- Player is prompted to enter its name at the start of the game 
+- Player is prompted to enter its name at the start of the game
+- Player is then given choice between 2 languages of word to be guessed, English (default) and Italian
 - Guess word is picked randomly via API call to [Random word API](https://random-word-api.herokuapp.com/home "Random word API"), masked and displayed to user as string of '_' underscores 
 - User must enter letters to guess the first and subsequent hidden letters in the game
 - User advances to the next word when all the letters of current word has been revealed
@@ -184,10 +180,30 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 
 ![HANGMAN-X gallows final state](docs/screenshots/hangman-x-gallows-state-007.jpg "HANGMAN-X final state gallows with head, torso, both arms, and both legs")
 
-#### error handling
-- user can only enter letters, numbers and special characters are not allowed and will prompt the user:
+## Error handling
 
-![Gameplay error handling](docs/screenshots/hangman-x-gameplay-error-handling.jpg "gameplay error handling ")
+In order to deliver good user experience I ensured that the inalid input from the user is handled correctly and does not crash the game.
+
+### Main menu
+
+* User must enter 1 of the 4 options anything else will trigger warning message
+
+![Main menu error handling](docs/screenshots/hangman-x-main-menu-errors.jpg "Main menu screen error handling")
+
+### Username input
+
+![Username input error handling](docs/screenshots/hangman-x-user-input-error-handling.jpg "Username input error handling")
+
+### Language choice
+
+![Language choice menu error handling](docs/screenshots/hangman-x-language-choice.jpg "Language choice menu error handling")
+
+### Gameplay
+
+* User can only enter letters, numbers and special characters are not allowed and will prompt the user:
+
+![Gameplay error handling](docs/screenshots/hangman-x-gameplay-error-handling.jpg "Gameplay error handling ")
+
 \
 &nbsp;
 
@@ -196,11 +212,11 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 &nbsp;
 
 ## Future developments
-* Add difficulty 3 difficulty levels:
+* Add 3 difficulty levels:
     * Easy - up to 5 letters
     * Medium - between 6 and 10 letters
     * Hard - 11 to 15 letters
-* Add language options
+* Add more language options - this also requires different validation for words with spaces and non-english letters
 * Allow user to sacrifice some points to reveal 1 random letter per word
 * Make it more visually appealing with Colorama library
 * Refactor the code and split larger functions into their own files
@@ -218,7 +234,7 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 * [CSS](https://en.wikipedia.org/wiki/CSS "CSS")
 * [Python](https://www.python.org/ "Python")
 
-## libraries and frameworks
+## Libraries and frameworks
 * [Google Fonts](https://fonts.google.com/ "Google Fonts")
 * [Font Awesome library](https://fontawesome.com/ "Font Awesome")
 
@@ -232,9 +248,7 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 * [Autoprefixer](https://autoprefixer.github.io/ "Autoprefixer")
 * [Lighthouse](https://developers.google.com/web/tools/lighthouse "Lighthouse")
 * [Text to ASCII generator](http://patorjk.com/software/taag/ "taag")
-* [Enchanted Learning](https://www.enchantedlearning.com/wordlist/ "word lists")
-* [Vecteezy](https://www.vecteezy.com/ "vecteezy")
-* [WebFX](https://www.webfx.com/web-design/color-picker/F1F1F1/ "WebFX color scheme generator")
+* [Pixabya](https://pixabay.com/ "Pixabay")
 * [TinyPNG](https://tinypng.com/ "TinyPNG")
 * [Photoshop](https://www.adobe.com/ie/products/photoshop.html "Adobe Photoshop")
 
@@ -253,10 +267,12 @@ For the final test I tried each of the menu and game functions and performed bel
 * Entering invalid charcters, multiple characters, blanks(empty or space) and special characters:
     * In main game menu
     * During username input
+    * During language choice
     * During the game when guessing the letters
     * In 'play again' menu option after winning and losing the game
 * Adding over 100 player names to google sheet file to ensure still sorting and display correctly
 * API calls were returning the same word over and over. I moved *'res = requests.get(f'{APIURL}/word')'* into the *get_word()* function and that fixed the problem.
+* As a last addition to the game I introduced Italian language. I tested it thoroughly to ensure stable functionality of the game experience. During the testing of German and Spanish language I come accross issues with spaces and language specific letters that require additional time to resolve. I decided to only implement Italian language with this iteration. 
 
 ### Markup Validation
 I tested my application with [W3C Markup Validation Service](https://validator.w3.org/ "Markup validation service").
@@ -273,31 +289,31 @@ Python code was validated using [PEP8 online](http://pep8online.com/ "PEP8 onlin
 
 * game.py
 
-![Markup Validation](docs/screenshots/markup-validation-before.png "validation of the markup of HANGMAN-X")
+![Python Validation](docs/screenshots/python-validation-before.png "Validation of the Python of HANGMAN-X")
 
 #### After
 * game.py
 
-![Markup Validation](docs/screenshots/markup-validation-after-001.png "validation of the markup of HANGMAN-X")
+![Python Validation](docs/screenshots/python-validation-after-001.png "Validation of the Python of HANGMAN-X")
 
 * utils.py
 
-![Markup Validation](docs/screenshots/markup-validation-after-002.png "validation of the markup of HANGMAN-X")
+![Python Validation](docs/screenshots/python-validation-after-002.png "Validation of the Python of HANGMAN-X")
 
 * api.py
 
-![Markup Validation](docs/screenshots/markup-validation-after-003.png "validation of the markup of HANGMAN-X")
+![Python Validation](docs/screenshots/python-validation-after-003.png "Validation of the Python of HANGMAN-X")
 
 ### Lighthouse
 
-Final testing was performed by Google's [Lighthouse](https://developers.google.com/web/tools/lighthouse "lighthouse")
+Final testing was performed by Google's [Lighthouse](https://developers.google.com/web/tools/lighthouse "Lighthouse")
 
-![lighthouse test ](docs/screenshots/lighthouse-desktop-validation.jpg "lighthouse test")
+![Lighthouse test ](docs/screenshots/lighthouse-desktop-validation.jpg "Lighthouse test")
 
 ### Images
 All images on the website were compressed using [TinyPNG](https://tinypng.com/ "tinypng.com for image compression")
 
-![TinyPNG image compression results](docs/screenshots/hangman-x-background-optimisation.jpg "image compression results")
+![TinyPNG image compression results](docs/screenshots/hangman-x-background-optimisation.jpg "Image compression results")
 
 \
 &nbsp;
@@ -316,7 +332,8 @@ Also other python files show minor 'trailing whitespace' and 'indentation' error
 &nbsp;
 
 # Deployment
-## Heroku deployment  
+
+## Heroku  
   
 The project was deployed to [Heroku](https://www.heroku.com) using the below procedure:-    
   
@@ -349,9 +366,9 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
 
 ## Gitpod terminal or local machine
 This project was developed using Code Institute's [template](https://github.com/Code-Institute-Org/python-essentials-template) which simulates a terminal in the web browser.
-Due to this, I optimized the game to work via the [final Heroku deployment](https://dnlbowers-battleship.herokuapp.com/), and I do not recommend playing it locally. That said, I have included this section to give you a choice.  
+Due to this, I optimized the game to work via the [final Heroku deployment](https://hangman-x-2022.herokuapp.com/), and I do not recommend playing it locally. That said, I have included this section to give you a choice.  
 
-1. Navigate to the [GitHub repository](https://github.com/dnlbowers/battleships), and follow [these steps to clone the project](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) into your IDE of choice.   
+1. Navigate to the [GitHub repository](https://github.com/lukaszkukla/hangman-x), and follow [these steps to clone the project](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) into your IDE of choice.   
    
    * **Gitpod** only **requires** you to have the **web extension** installed and **click** the **green Gitpod button** from the repositories main page. If you are **using Gitpod** please **skip step 2** below as you do not require a virtual environment to protect your machine.  
   
@@ -368,7 +385,7 @@ Due to this, I optimized the game to work via the [final Heroku deployment](http
 \
 &nbsp;
 
-# credits
+# Credits
 
 * [Simen Daehlin](https://github.com/Eventyret "Simen Daehlin") - for code inspiration, help and advice
 

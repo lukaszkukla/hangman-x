@@ -9,4 +9,3 @@ node_modules/
 creds.json
 __testing__
 difficulty.py
-rules.py

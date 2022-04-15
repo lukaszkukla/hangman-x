@@ -12,6 +12,7 @@ from src.headers import (
     hall_of_fame_header,
     game_over_header)
 from google.oauth2.service_account import Credentials
+from src.lang import language
 
 
 SCOPE = [
@@ -26,7 +27,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman-x')
 high_scores = SHEET.worksheet('highscores')
 scores = high_scores.get_all_records()
-word = get_word().upper()
+word = get_word(lang='en').upper()
 player_score = {}
 
 
@@ -58,17 +59,23 @@ def update_highscores():
 
 def player_name():
     '''
-    Creates user, resets game score and starts game
+    Create user, choose languge, reset game score and start the game
     '''
-    clear_terminal()
     global player
+    clear_terminal()
+    game_header()
     while True:
         player = input('Please enter your name: ').upper()
         if player.isalpha():
+            global lang
+            print(f'\nWelcome {Colors.CYAN}{player}{Colors.WHITE}')
+            pause()
+            lang = language()
             player_score[player] = 0
+            
             start_game(word)
         else:
-            print('Please use letters only')
+            print(f'Please use {Colors.YELLOW}letters only{Colors.WHITE}\n')
 
 
 def how_to_play():
@@ -160,7 +167,7 @@ def start_game(word):
     Displays list of guessed letters.
     Calls other functions to display headers or clear terminal.
     '''
-    word = get_word().upper()
+    word = get_word(lang).upper()
     hidden_word = '_' * len(word)
     guessed = False
     letter_guess = []
