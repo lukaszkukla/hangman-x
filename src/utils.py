@@ -1,7 +1,9 @@
 import os
+from src.colors import Colors
 
 def pause():
-    input("Press Enter to continue...")
+    print('\n')
+    input(f'press {Colors.VIOLET}ENTER{Colors.WHITE} to continue...')
 
 def clear_terminal():
     """

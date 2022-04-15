@@ -1,9 +1,7 @@
 from src.game import game_menu
 
-def main():
-    """
-    Run all program functions.
-    """
-    game_menu()  
-    
-main()
+if __name__ == '__main__':
+    '''
+    Starts the game
+    '''
+    game_menu()
