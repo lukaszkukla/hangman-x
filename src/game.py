@@ -135,9 +135,9 @@ def game_menu():
         print(f'Press {Colors.BLUE}3{Colors.WHITE} ', end='')
         print(f'to view {Colors.YELLOW}Hall of Fame{Colors.WHITE}')
         print(f'Press {Colors.BLUE}4{Colors.WHITE} ', end='')
-        print(f'to {Colors.RED}quit the game{Colors.WHITE}\n')
+        print(f'to {Colors.RED}Quit game{Colors.WHITE}\n')
         print(f'Press {Colors.BLUE}5{Colors.WHITE} ', end='')
-        print(f'for {Colors.UNDERLINE}disclaimer{Colors.WHITE}\n')
+        print(f'for {Colors.UNDERLINE}Disclaimer{Colors.WHITE}\n')
         option = input('Choose one of the main menu options: ').upper()
         if option == '1':
             menu_options = False
