@@ -1,7 +1,7 @@
 import os
 from src.colors import Colors
 from src.utils import clear_terminal, pause
-from src.api import call_get_word
+from src.api import get_word
 from src.gallows import  display_hangman
 from src.headers import game_header, rules_header, player_wins_header, hall_of_fame_header, game_over_header
 import gspread
@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open('hangman-x')
 high_scores = SHEET.worksheet('highscores')
 scores = high_scores.get_all_records()
 
-word = call_get_word().upper()
+word = get_word().upper()
 width = os.get_terminal_size().columns
 game_results = {}
 score = 0
@@ -122,7 +122,8 @@ def start_game(word):
     Starts the game.
     Sets initial tries, displays empty gallows and shows the word to be guessed.
     Calls restart game function if player runs out of tries.
-    '''   
+    '''
+    word = get_word().upper()
     hidden_word = '_' * len(word)
     global score
     game_over = False
@@ -216,9 +217,8 @@ def start_game(word):
                                          ' play again? ( y / n ) : ').upper()
             if(play_again_after_win == 'Y'):
                 game_results[player] += 10
-                word = call_get_word().upper()
-                start_game(word)
-                
+                word = get_word().upper()
+                start_game(word)                
             elif(play_again_after_win == 'N'):
                 game_results[player] += 10                
                 if(player not in scores[0].keys()):
@@ -244,26 +244,28 @@ def start_game(word):
         while True:
             play_again_after_lose = input(f'play again? ( y / n ) : ').upper()
             if(play_again_after_lose == 'Y'):
-                start_game(call_get_word())
+                word = get_word().upper()
+                start_game(word)
             elif(play_again_after_lose == 'N'):
+                word = get_word().upper()
                 welcome_screen()
             else:
                 print(f'please choose option y or n')
 
-def restart():
-    """
-    Ask the users if they want to continue or quit
-    """
-    while True:
-        user_input = input(
-            'would you like to continue? ( y / n ) : \n')
-        if user_input == "Y":
-            clear_terminal()
-            call_get_word()
-            start_game(word)
-        elif user_input == "N":
-            clear_terminal()
-            welcome_screen()
-        else:
-            clear_terminal()
-            print('invalid choise, please chose again\n')  
+# def restart():
+#     """
+#     Ask the users if they want to continue or quit
+#     """
+#     while True:
+#         user_input = input(
+#             'would you like to continue? ( y / n ) : \n')
+#         if user_input == "Y":
+#             clear_terminal()
+#             get_word()
+#             start_game(get_word)
+#         elif user_input == "N":
+#             clear_terminal()
+#             welcome_screen()
+#         else:
+#             clear_terminal()
+#             print('invalid choise, please chose again\n')  
