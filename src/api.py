@@ -1,5 +1,6 @@
 import requests
 
+
 APIURL = 'https://random-word-api.herokuapp.com'
 
 def get_word():  
