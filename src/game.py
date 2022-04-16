@@ -65,7 +65,7 @@ def update_highscores():
 
 def player_name():
     '''
-    Create user, let to choose languge, reset game score and start the game
+    Create user, let to choose language, reset game score and start the game
     '''
     global player
     clear_terminal()
@@ -114,7 +114,7 @@ to the next secret word or stop the game.''')
     print(f'{Colors.RED}missed letter cost the player ', end='')
     print(f'1 life and 1 point.{Colors.WHITE}')
     print('Each unseccessful try adds a new body part to the gallows.')
-    print('After 6 unsuccessfull guesses player ', end='')
+    print('After 6 unsuccessful guesses player ', end='')
     print('will be hanged and game will be over.\n')
     print(f'{Colors.GREEN}You have 6 lives {Colors.WHITE}', end='')
     print('to beat the game and add your name to the ', end='')
@@ -179,7 +179,7 @@ def start_game(word):
     Start the game.
     Set initial number of tries, display empty gallows
     and show the word to be guessed.
-    Await for and validate user input.
+    Wait for and validate user input.
     Display appropriate error message.
     Add 1 point if letter in word or subtract 1 point
     and 1 life if letter not in the word.
