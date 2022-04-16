@@ -82,6 +82,11 @@ In order to meet above requirements and expectations I built flowchart which ser
 
 ![HANGMAN-X flowchart](docs/screenshots/hangman-x-flowchart.jpg "Game flowchart")
 
+### Language addition
+I added extra step in the gameplay where user can now choose between English (default) and Italian language. This is reflected on chart below.
+
+![HANGMAN-X flowchart language addition](docs/screenshots/hangman-x-flowchart-language.jpg "Game flowchart with language added")
+
 \
 &nbsp;
 [back to top](#table-of-contents)
