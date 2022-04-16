@@ -163,7 +163,7 @@ def game_menu():
             clear_terminal()
             game_header()
             disclaimer_header()
-            print('Pleaes note that the game functionality depends on the extarnal link.')
+            print('Please note that the game functionality depends on the extarnal link.')
             print('In case there were any changes to it please contact me via ')
             print('Code Institute so I can update the link ', end='')            
             print('to ensure the game functions properly.\n')
