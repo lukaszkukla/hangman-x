@@ -1,7 +1,10 @@
 from src.colors import Colors
 
 def display_hangman(tries):
-    stages = [  # final state: head, torso, both arms, and both legs
+   '''
+   Various stages of gallows depends on number of tries left. 
+   '''
+   stages = [  # final state: head, torso, both arms, and both legs
         '''
                   --------
                   |      |
@@ -72,4 +75,4 @@ def display_hangman(tries):
                   -
                ''',
     ]
-    return stages[tries]
+   return stages[tries]

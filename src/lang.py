@@ -1,7 +1,12 @@
 from src.colors import Colors
 from src.headers import game_header
 from src.utils import clear_terminal
+
 def language():
+    '''
+    Set the language of the word to be guessed based on user input.
+    Validate user input.
+    '''
     clear_terminal()
     game_header()
     print('\nChoose game language:\n')

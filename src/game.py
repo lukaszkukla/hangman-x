@@ -34,6 +34,10 @@ player_score = {}
 
 
 def hall_of_fame_scores():
+    '''
+    Get and sort data from google sheet.
+    Return top 10 highscore items.
+    '''
     scores = high_scores.get_all_records()
     clear_terminal()
     game_header()
@@ -61,7 +65,7 @@ def update_highscores():
 
 def player_name():
     '''
-    Create user, choose languge, reset game score and start the game
+    Create user, let to choose languge, reset game score and start the game
     '''
     global player
     clear_terminal()
@@ -82,7 +86,7 @@ def player_name():
 
 def how_to_play():
     '''
-    Displays game rules and waits for user's response
+    Display game rules and waits for user's response
     '''
     game_header()
     rules_header()
@@ -122,7 +126,7 @@ to the next secret word or stop the game.''')
 
 def game_menu():
     """
-    Displays game header, and choice of menu options
+    Display game header, and choice of menu options
     """
     clear_terminal()
     game_header()
@@ -152,8 +156,8 @@ def game_menu():
             hall_of_fame_header()
             hall_of_fame_scores()
         elif option == '4':
-            print('Thank you for playing. I hope you enjoyed it.\n')
-            print('Shutting down...')
+            print('\nThank you for playing. I hope you enjoyed it.\n')
+            print('Shutting down...\n')
             exit()
         elif option == '5':
             clear_terminal()
@@ -172,15 +176,17 @@ def game_menu():
 
 def start_game(word):
     '''
-    Starts the game.
-    Sets initial number of tries, displays empty gallows
-    and shows the word to be guessed.
-    Awaits for and validates user input and displays
-    appropriate error message.
-    Adds 1 point if letter in word or subtracts 1 point
+    Start the game.
+    Set initial number of tries, display empty gallows
+    and show the word to be guessed.
+    Await for and validate user input.
+    Display appropriate error message.
+    Add 1 point if letter in word or subtract 1 point
     and 1 life if letter not in the word.
-    Displays list of guessed letters.
-    Calls other functions to display headers or clear terminal.
+    Display list of guessed letters.
+    Call other functions to display headers and clear terminal.
+    Ask player to continue upon game end and validate for user input.
+    Add user and display hall of fame if enough points accumulated.
     '''
     word = get_word(lang).upper()
     hidden_word = '_' * len(word)
