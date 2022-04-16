@@ -9,9 +9,9 @@ Welcome to HANGMAN-X. This is na interactive game which runs in Python terminal.
 
 It is a third project on my journey with [Code Institute](https://codeinstitute.net/ie/) to become a fullstack web developer. It is intended to put my knowledge into practice.
 
-[Hangman game](https://en.wikipedia.org/wiki/Hangman_(game)#:~:text=Though%20the%20origins%20of%20the,to%20fill%20in%20the%20blanks.) requires user to reveal the secret word by guessing the individual letters. Player have 6 attempts per word to beat the game before it will be 'hanged'.
+[Hangman game](https://en.wikipedia.org/wiki/Hangman_(game)#:~:text=Though%20the%20origins%20of%20the,to%20fill%20in%20the%20blanks.) requires user to reveal the secret word by guessing the individual letters. Player has 6 attempts per word to beat the game before it will be 'hanged'.
 
-My version of the game calls for random word via API. Player can enter its name and choose between 2 languages. Game continues until user stops, loose all lives or resigns.
+My version of the game calls for random word via API. Player can enter its name and choose between 2 languages. Game continues until user stops, lose all lives or resigns.
 
 For the purpose of testing its functionality user may enter word **'cheat'** to get a hint of the hidden word. This functionality is only for the [Code Institute](codeinstitute.com) testing and grading purposes.
 
@@ -78,7 +78,7 @@ As a user, I want to:
 * I expect words to not to repeat over and over
 
 ## Flow chart
-In order to meet above requirements and expectations I built flowchart which served me as a road map to successfull completion of the project:
+In order to meet above requirements and expectations I built flowchart which served me as a road map to successful completion of the project:
 
 ![HANGMAN-X flowchart](docs/screenshots/hangman-x-flowchart.jpg "Game flowchart")
 
@@ -149,7 +149,7 @@ The rules display information on how game works and wait for user input 'press E
 - Only the user who accumulates enough points will get an honour to be added to the hall of fame
 
 #### Scoring system
-* Each successfuly guessed letter adds 1 point to the final score
+* Each successfully guessed letter adds 1 point to the final score
 * Guessing the whole word add 10 points to the player's score
 * Each unsuccessful try cost player 1 point
 
@@ -187,7 +187,7 @@ Each unsuccessful try will decrease user's life by 1 point and add a body part t
 
 ## Error handling
 
-In order to deliver good user experience I ensured that the inalid input from the user is handled correctly and does not crash the game.
+In order to deliver good user experience I ensured that the invalid input from the user is handled correctly and does not crash the game.
 
 ### Main menu
 
@@ -221,7 +221,7 @@ In order to deliver good user experience I ensured that the inalid input from th
     * Easy - up to 5 letters
     * Medium - between 6 and 10 letters
     * Hard - 11 to 15 letters
-* Add more language options - this also requires different validation for words with spaces and non-english letters
+* Add more language options - this also requires different validation for words with spaces and non-English letters
 * Allow user to sacrifice some points to reveal 1 random letter per word
 * Make it more visually appealing with Colorama library
 * Refactor the code and split larger functions into their own files
@@ -269,7 +269,7 @@ During the development, I tested my game in the terminal of VScode. I also used 
 I used print statements for every piece of code that I worked on to test if it is performing as expected. Any bugs were corrected 'on the fly' while building the app.
 
 For the final test I tried each of the menu and game functions and performed below test to ensure correct functionality of the game:
-* Entering invalid charcters, multiple characters, blanks(empty or space) and special characters:
+* Entering invalid characters, multiple characters, blanks(empty or space) and special characters:
     * In main game menu
     * During username input
     * During language choice
@@ -277,7 +277,7 @@ For the final test I tried each of the menu and game functions and performed bel
     * In 'play again' menu option after winning and losing the game
 * Adding over 100 player names to google sheet file to ensure still sorting and display correctly
 * API calls were returning the same word over and over. I moved *'res = requests.get(f'{APIURL}/word')'* into the *get_word()* function and that fixed the problem.
-* As a last addition to the game I introduced Italian language. I tested it thoroughly to ensure stable functionality of the game experience. During the testing of German and Spanish language I come accross issues with spaces and language specific letters that require additional time to resolve. I decided to only implement Italian language with this iteration. 
+* As a last addition to the game I introduced Italian language. I tested it thoroughly to ensure stable functionality of the game experience. During the testing of German and Spanish language I come across issues with spaces and language specific letters that require additional time to resolve. I decided to only implement Italian language with this iteration. 
 
 ### Markup Validation
 I tested my application with [W3C Markup Validation Service](https://validator.w3.org/ "Markup validation service").
@@ -327,8 +327,8 @@ All images on the website were compressed using [TinyPNG](https://tinypng.com/ "
 &nbsp;
 
 ## Unfixed bugs
-Games is not responsive. It is not recommended to play on mobile devices. The Code Institute's Python terminal emulator is not build to be scaled down to fit small screens.
-Also other python files show minor 'trailing whitespace' and 'indentation' errors when checked with PEP8 online. They do not have any impact on functionality of the game and user experience.
+Games is not responsive. It is not recommended to play on mobile devices. The Code Institute's Python terminal emulator is not built to be scaled down to fit small screens.
+Also, other python files show minor 'trailing whitespace' and 'indentation' errors when checked with PEP8 online. They do not have any impact on functionality of the game and user experience.
 
 \
 &nbsp;
@@ -344,7 +344,7 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
   
 1. Log in to [Heroku](https://id.heroku.com/login) or [sign up](https://signup.heroku.com/login) for free account
 1. Click **new** button in the top right corner
-1. Select **create new app** from the drop down list
+1. Select **create new app** from the drop-down list
 1. Enter a unique app name in the 'App name' input field - green thick will appear to confirm availability
 1. Select appropriate **region** to your location from the 'choose a region' drop down list
 1. Click **create app** button to proceed

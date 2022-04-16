@@ -5,7 +5,7 @@ APIURL = 'https://random-word-api.herokuapp.com'
 
 def get_word(lang='en'):
     '''
-    Gets the word from the API
+    Get the word from the API
     '''
     res = requests.get(f'{APIURL}/word?lang={lang}')
     try:
